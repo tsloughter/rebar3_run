@@ -1,7 +1,12 @@
 rebar3_run
 =====
 
-A rebar plugin
+A rebar plugin using a Rust NIF, thanks to https://github.com/goertzenator/ruster_unsafe
+
+Requirements
+------------
+
+This branch requires [Rust](http://www.rust-lang.org/) and [Cargo](https://crates.io/install).
 
 Build
 -----
