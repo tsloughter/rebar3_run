@@ -4,7 +4,7 @@
          do/1,
          format_error/1]).
 
--export([exec/2]).
+-export([console/1]).
 
 -on_load(init/0).
 
@@ -39,7 +39,7 @@ do(State) ->
     case lists:keyfind(release, 1, Config) of
         {release, {Name, _Vsn}, _} ->
             StartScript = filename:join([ReleaseDir, Name, "bin", Name]),
-            exec(StartScript, ["console"]),
+            console(StartScript),
             {ok, State};
         false ->
             ?PRV_ERROR(no_release)
@@ -50,7 +50,7 @@ format_error(no_release) ->
 
 init() ->
     PrivDir = code:priv_dir(rebar3_run),
-    ok = erlang:load_nif(filename:join(PrivDir, "rebar3_run"), 0).
+    ok = erlang:load_nif(filename:join(PrivDir, "librebar3_run"), 0).
 
-exec(_Path, _Args) ->
-  exit(nif_library_not_loaded).
+console(_) ->
+    exit(nif_library_not_loaded).

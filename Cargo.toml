@@ -1,0 +1,13 @@
+[package]
+name = "rebar3_run"
+version = "0.0.1"
+authors = ["tristan"]
+
+[lib]
+name = "rebar3_run"
+path = "rs_src/rebar3_run.rs"
+crate-type = ["dylib"]
+
+[dependencies]
+ruster_unsafe = "0.1"
+libc = "0.1.7"
