@@ -19,7 +19,7 @@ Use
 Add the plugin to your rebar config:
 
     {plugins, [
-        {rebar3_run, ".*", {git, "git://github.com/tsloughter/rebar3_run.git", {branch, "master"}}}
+        {rebar3_run, ".*", {git, "git://github.com/tsloughter/rebar3_run.git", {branch, "rust"}}}
     ]}.
 
 Assuming you have a `relx` config section in your `rebar.config` with `extended_start_script` set to true:
