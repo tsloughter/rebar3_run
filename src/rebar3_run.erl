@@ -8,8 +8,6 @@
 
 -on_load(init/0).
 
--include_lib("providers/include/providers.hrl").
-
 -define(PROVIDER, run).
 -define(DEPS, [release]).
 
@@ -42,7 +40,7 @@ do(State) ->
             console(StartScript),
             {ok, State};
         false ->
-            ?PRV_ERROR(no_release)
+            {error, {?MODULE, no_release}}
     end.
 
 format_error(no_release) ->
