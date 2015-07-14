@@ -6,8 +6,6 @@
 
 -export([exec/2]).
 
--on_load(init/0).
-
 -define(PROVIDER, run).
 -define(DEPS, [release]).
 
@@ -32,6 +30,9 @@ init(State) ->
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
+    %% Can't use on_load since rebar3 loads/unloads plugins, screwing up nifs
+    init(),
+
     ReleaseDir = filename:join(rebar_dir:base_dir(State), "rel"),
     Config = rebar_state:get(State, relx, []),
     case lists:keyfind(release, 1, Config) of
@@ -47,6 +48,7 @@ format_error(no_release) ->
     "No release to run was found.".
 
 init() ->
+    application:load(rebar3_run),
     PrivDir = code:priv_dir(rebar3_run),
     ok = erlang:load_nif(filename:join(PrivDir, "rebar3_run"), 0).
 
