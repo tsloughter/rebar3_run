@@ -6,4 +6,8 @@
     [kernel,stdlib]}
  ,{env,[]}
  ,{modules, []}
+
+ ,{contributors,["Tristan Sloughter"]}
+ ,{licenses,["MIT"]}
+ ,{links,[{"Github", "https://github.com/tsloughter/rebar3_run"}]}
  ]}.
