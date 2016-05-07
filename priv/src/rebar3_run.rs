@@ -5,6 +5,7 @@
 extern crate rustler;
 
 use std::process::Command;
+use std::os::unix::prelude::CommandExt;
 use rustler::{atom, NifEnv, NifTerm, NifError, NifDecoder};
 
 rustler_export_nifs!(
@@ -17,9 +18,7 @@ fn console<'a>(env: &'a NifEnv, args: &Vec<NifTerm>) -> Result<NifTerm<'a>, NifE
     let path: String = try!(args[0].decode());
 
     // Run release with console
-    let _ = Command::new(path).arg("console").status().unwrap_or_else(|e| {
-            panic!("failed to execute process: {}", e)
-    });
+    let _ = Command::new(path).arg("console").exec();
 
 
     Ok(atom::get_atom_init("ok").to_term(env))
