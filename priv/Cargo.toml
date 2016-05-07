@@ -5,9 +5,9 @@ authors = ["tristan"]
 
 [lib]
 name = "rebar3_run"
-path = "rs_src/rebar3_run.rs"
+path = "src/rebar3_run.rs"
 crate-type = ["dylib"]
 
 [dependencies]
-ruster_unsafe = "0.1"
-libc = "0.1.7"
+rustler = "0.8.2"
+rustler_codegen = "0.8.2"

@@ -37,7 +37,7 @@ do(State) ->
     case lists:keyfind(release, 1, Config) of
         {release, {Name, _Vsn}, _} ->
             StartScript = filename:join([ReleaseDir, Name, "bin", Name]),
-            console(StartScript),
+            console(list_to_binary(StartScript)),
             {ok, State};
         false ->
             {error, {?MODULE, no_release}}
