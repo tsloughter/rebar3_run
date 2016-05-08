@@ -20,6 +20,5 @@ fn console<'a>(env: &'a NifEnv, args: &Vec<NifTerm>) -> Result<NifTerm<'a>, NifE
     // Run release with console
     let _ = Command::new(path).arg("console").exec();
 
-
     Ok(atom::get_atom_init("ok").to_term(env))
 }
