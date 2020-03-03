@@ -13,13 +13,15 @@ Use
 
 Add the plugin to your rebar config or `~/.config/rebar3/rebar.config`:
 
-    {plugins, [
-        rebar3_run
-    ]}.
+```erlang
+{plugins, [
+    rebar3_run
+]}.
+```
 
 Assuming you have a `relx` config section in your `rebar.config` with `extended_start_script` set to true:
 
-```
+```erlang
 {relx, [{release, {<NAME>, <VERSION>}, [<YOUR APP NAME>]},
         {dev_mode, true},
         {include_erts, false},
