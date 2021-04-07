@@ -1,7 +1,7 @@
 rebar3_run
 =====
 
-A rebar plugin
+Run a release with one simple command.
 
 Build
 -----
