@@ -28,7 +28,7 @@ init(State) ->
     State1 = rebar_state:add_provider(State, Provider),
     {ok, State1}.
 
--spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
+-spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, {rebar3_run, no_release}}.
 do(State) ->
     %% Can't use on_load since rebar3 loads/unloads plugins, screwing up nifs
     init(),
@@ -48,9 +48,9 @@ format_error(no_release) ->
     "No release to run was found.".
 
 init() ->
-    application:load(rebar3_run),
+    _ = application:load(rebar3_run),
     PrivDir = code:priv_dir(rebar3_run),
     ok = erlang:load_nif(filename:join(PrivDir, "rebar3_run"), 0).
 
 exec(_Path, _Args) ->
-  exit(nif_library_not_loaded).
+  erlang:nif_error(nif_library_not_loaded).
