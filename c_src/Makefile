@@ -40,18 +40,24 @@ LDFLAGS += -shared
 
 # Verbosity.
 
+V ?=
+
+c_verbose_ ?=
 c_verbose_0 = @echo " C     " $(?F);
 c_verbose = $(c_verbose_$(V))
 
+cpp_verbose_ ?=
 cpp_verbose_0 = @echo " CPP   " $(?F);
 cpp_verbose = $(cpp_verbose_$(V))
 
+link_verbose_ ?=
 link_verbose_0 = @echo " LD    " $(@F);
 link_verbose = $(link_verbose_$(V))
 
 SOURCES := $(shell find $(C_SRC_DIR) -type f \( -name "*.c" -o -name "*.C" -o -name "*.cc" -o -name "*.cpp" \))
 OBJECTS = $(addsuffix .o, $(basename $(SOURCES)))
 
+CPPFLAGS ?=
 COMPILE_C = $(c_verbose) $(CC) $(CFLAGS) $(CPPFLAGS) -c
 COMPILE_CPP = $(cpp_verbose) $(CXX) $(CXXFLAGS) $(CPPFLAGS) -c
 
