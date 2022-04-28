@@ -63,19 +63,19 @@ COMPILE_CPP = $(cpp_verbose) $(CXX) $(CXXFLAGS) $(CPPFLAGS) -c
 
 $(C_SRC_OUTPUT): $(OBJECTS)
 	@mkdir -p $(BASEDIR)/priv/
-	$(link_verbose) $(CC) $(OBJECTS) $(LDFLAGS) $(LDLIBS) -o $(C_SRC_OUTPUT)
+	@$(link_verbose) $(CC) $(OBJECTS) $(LDFLAGS) $(LDLIBS) -o $(C_SRC_OUTPUT)
 
 %.o: %.c
-	$(COMPILE_C) $(OUTPUT_OPTION) $<
+	@$(COMPILE_C) $(OUTPUT_OPTION) $<
 
 %.o: %.cc
-	$(COMPILE_CPP) $(OUTPUT_OPTION) $<
+	@$(COMPILE_CPP) $(OUTPUT_OPTION) $<
 
 %.o: %.C
-	$(COMPILE_CPP) $(OUTPUT_OPTION) $<
+	@$(COMPILE_CPP) $(OUTPUT_OPTION) $<
 
 %.o: %.cpp
-	$(COMPILE_CPP) $(OUTPUT_OPTION) $<
+	@$(COMPILE_CPP) $(OUTPUT_OPTION) $<
 
 clean:
 	@rm -f $(C_SRC_OUTPUT) $(OBJECTS)
